@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>عناية | خدمات التمريض والرعاية المنزلية المتخصصة</title>
+  <meta name="title" content="عناية | خدمات التمريض المنزلي">
+  <meta name="description" content="منصة متخصصة في توفير كادر تمريضي منزلي مؤهل ومرخص برعاية طبية متكاملة على مدار الساعة.">
+
+  <!-- الخطوط العربية الرسمية -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- استدعاء ملف التنسيق الموحد -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <link rel="preload" as="image" href="./assets/images/hero-banner.png">
+  <link rel="preload" as="image" href="./assets/images/hero-bg.png">
+</head>
+
+<body id="top">
+
+  <!-- شاشة التحميل -->
+  <div class="preloader" data-preloader>
+    <div class="circle"></div>
+  </div>
+
+  <!-- الشريط العلوي (Header) -->
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#" class="logo" style="display:flex; align-items:center; gap:8px; color:var(--white); font-weight:800; font-size:2.2rem;">
+        <ion-icon name="medkit" style="color:var(--verdigris); font-size:3.2rem;"></ion-icon>
+        <span>عِناية المنزلية</span>
+      </a>
+
+      <nav class="navbar" data-navbar>
+        <div class="navbar-top">
+          <a href="#" class="logo" style="color:var(--white); font-weight:800; font-size:2rem;">
+            عِناية للتمريض المنزلي
+          </a>
+          <button class="nav-close-btn" aria-label="إغلاق القائمة" data-nav-toggler>
+            <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+
+        <ul class="navbar-list">
+          <li class="navbar-item"><a href="#top" class="navbar-link title-md">الرئيسية</a></li>
+          <li class="navbar-item"><a href="#order-section" class="navbar-link title-md">طلب ممرضة</a></li>
+          <li class="navbar-item"><a href="#services" class="navbar-link title-md">خدماتنا</a></li>
+          <li class="navbar-item"><a href="#nationalities" class="navbar-link title-md">الجنسيات والكوادر</a></li>
+          <li class="navbar-item"><a href="#about" class="navbar-link title-md">من نحن</a></li>
+        </ul>
+
+        <ul class="social-list">
+          <li><a href="https://wa.me/966556300362" class="social-link"><ion-icon name="logo-whatsapp"></ion-icon></a></li>
+          <li><a href="#" class="social-link"><ion-icon name="logo-twitter"></ion-icon></a></li>
+          <li><a href="#" class="social-link"><ion-icon name="logo-instagram"></ion-icon></a></li>
+        </ul>
+      </nav>
+
+      <button class="nav-open-btn" aria-label="فتح القائمة" data-nav-toggler>
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
+
+      <a href="#order-section" class="btn has-before title-md">احجز ممرضة الآن</a>
+      <div class="overlay" data-nav-toggler data-overlay></div>
+    </div>
+  </header>
+
+  <main>
+    <article>
+
+      <!-- القسم الرئيسي ونموذج الحجز (دون أي تداخل مع الهيدر) -->
+      <section class="section hero" style="background-image: url('./assets/images/hero-bg.png')" aria-label="home" id="order-section">
+        <div class="container">
+
+          <div class="hero-content">
+            <p class="hero-subtitle has-before" data-reveal="left">رعاية طبية وإنسانية في منزلك</p>
+
+            <h1 class="headline-lg hero-title" data-reveal="left">
+              نوفر لك أمهر <br>
+              الممرضات والممرضين.
+            </h1>
+
+            <div class="nursing-order-card" data-reveal="left">
+              <p class="title-lg card-text" style="color:var(--midnight-green); font-weight:700; margin-bottom:16px;">
+                حدد مواصفات الخدمة والكوادر المطلوبة:
+              </p>
+
+              <form id="nursingBookingForm">
+                
+                <div class="form-row">
+                  <div class="custom-field">
+                    <label for="clientName">اسم العميل / المريض</label>
+                    <input type="text" id="clientName" required class="custom-input" placeholder="الاسم الكامل">
+                  </div>
+                  <div class="custom-field">
+                    <label for="clientPhone">رقم الجوال (واتساب)</label>
+                    <input type="tel" id="clientPhone" required class="custom-input" placeholder="05xxxxxxxx" inputmode="numeric">
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="custom-field">
+                    <label for="nurseNationality">جنسية الممرضة المفضلة</label>
+                    <select id="nurseNationality" class="custom-select" required>
+                      <option value="فلبينية">فلبينية (خبرة عالية ورعاية دقيقة)</option>
+                      <option value="إندونيسية">إندونيسية (رعاية كبار سن وأمومة)</option>
+                      <option value="هندية">هندية (رعاية تخصصية وعناية مركزة)</option>
+                      <option value="عربية (أردنية / تونسية / مصرية)">عربية (تواصل سهل وخبرة سريرية)</option>
+                      <option value="ممرض (رجال)">ممرض رجالي (لكبار السن والرجال)</option>
+                      <option value="أي جنسية متاحة">أي جنسية مؤهلة متوفرة فوراً</option>
+                    </select>
+                  </div>
+
+                  <div class="custom-field">
+                    <label for="serviceType">نوع الرعاية والعمل الطبي</label>
+                    <select id="serviceType" class="custom-select" required>
+                      <option value="رعاية كبار السن وملازمتهم">رعاية كبار السن وملازمتهم</option>
+                      <option value="رعاية ما بعد العمليات الجراحية">رعاية ما بعد العمليات الجراحية</option>
+                      <option value="غيار جروح متقدمة وقرح فراش">غيار جروح متقدمة وقرح فراش</option>
+                      <option value="إعطاء حقن ومحاليل وريدية وقسطرة">إعطاء حقن ومحاليل وريدية وقسطرة</option>
+                      <option value="رعاية حديثي الولادة والأمهات">رعاية حديثي الولادة والأمهات</option>
+                      <option value="رعاية حالات غيبوبة / تنفس اصطناعي">رعاية حالات خاصة (أجهزة وتغذية أنبوبية)</option>
+                      <option value="متابعة دورية وقياس علامات حيوية">متابعة دورية وقياس علامات حيوية</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="custom-field">
+                    <label for="shiftType">نظام وتوقيت العمل</label>
+                    <select id="shiftType" class="custom-select" required>
+                      <option value="زيارة تمريضية عاجلة (ساعة إلى ساعتين)">زيارة تمريضية محددة (إجراء سريع)</option>
+                      <option value="شفت يومي 12 ساعة (نهاري أو ليلي)">شفت يومي 12 ساعة (نهاري أو ليلي)</option>
+                      <option value="إقامة منزلية كاملة (24 ساعة)">إقامة منزلية كاملة (24 ساعة مرافقة)</option>
+                      <option value="عقد شهري متواصل">عقد شهري متواصل</option>
+                    </select>
+                  </div>
+
+                  <div class="custom-field">
+                    <label for="clientCity">المدينة والحي</label>
+                    <input type="text" id="clientCity" required class="custom-input" placeholder="مثال: الرياض - حي الصحافة">
+                  </div>
+                </div>
+
+                <div class="custom-field" style="margin-bottom:14px;">
+                  <label for="patientNotes">ملاحظات عن الحالة والمهام المطلوبة</label>
+                  <textarea id="patientNotes" class="custom-textarea" placeholder="يرجى توضيح عمر المريض، تشخيص الحالة، القدرة على الحركة، وأي توجيهات خاصة..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-whatsapp-submit">
+                  <ion-icon name="logo-whatsapp"></ion-icon>
+                  <span>إرسال تفاصيل الطلب عبر واتساب</span>
+                </button>
+              </form>
+            </div>
+
+          </div>
+
+          <figure class="hero-banner" data-reveal="right">
+            <img src="./assets/images/hero-banner.png" width="590" height="517" loading="eager" alt="ممرضة منزلية" class="w-100">
+          </figure>
+
+        </div>
+      </section>
+
+      <!-- بطاقات الخدمات -->
+      <section class="service" aria-label="service" id="services">
+        <div class="container">
+          <ul class="service-list">
+
+            <li>
+              <div class="service-card" data-reveal="bottom">
+                <div class="card-icon">
+                  <img src="./assets/images/icon-1.png" width="71" height="71" loading="lazy" alt="icon">
+                </div>
+                <h3 class="headline-sm card-title"><a href="#order-section">رعاية كبار السن</a></h3>
+                <p class="card-text">عناية إنسانية شاملة ومساعدة في النظافة، تناول الأدوية، والتمارين الحركية اليومية.</p>
+                <a href="#order-section" class="btn-circle" aria-label="طلب الخدمة"><ion-icon name="arrow-back" aria-hidden="true"></ion-icon></a>
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card" data-reveal="bottom">
+                <div class="card-icon">
+                  <img src="./assets/images/icon-2.png" width="71" height="71" loading="lazy" alt="icon">
+                </div>
+                <h3 class="headline-sm card-title"><a href="#order-section">عناية ما بعد الجراحة</a></h3>
+                <p class="card-text">متابعة دقيقة للمؤشرات الحيوية، إدارة الألم، وغيار وتطهير الجروح لمنع أي عدوى.</p>
+                <a href="#order-section" class="btn-circle" aria-label="طلب الخدمة"><ion-icon name="arrow-back" aria-hidden="true"></ion-icon></a>
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card" data-reveal="bottom">
+                <div class="card-icon">
+                  <img src="./assets/images/icon-3.png" width="71" height="71" loading="lazy" alt="icon">
+                </div>
+                <h3 class="headline-sm card-title"><a href="#order-section">المحاليل والحقن الوريدية</a></h3>
+                <p class="card-text">تركيب الكانيولا، المحاليل المغذية، المضادات الحيوية، وأخذ العينات المنزلية باحتراف.</p>
+                <a href="#order-section" class="btn-circle" aria-label="طلب الخدمة"><ion-icon name="arrow-back" aria-hidden="true"></ion-icon></a>
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card" data-reveal="bottom">
+                <div class="card-icon">
+                  <img src="./assets/images/icon-4.png" width="71" height="71" loading="lazy" alt="icon">
+                </div>
+                <h3 class="headline-sm card-title"><a href="#order-section">رعاية الأم والمولود</a></h3>
+                <p class="card-text">مساعدة الأمهات بعد الولادة القيصرية أو الطبيعية ورعاية دقيقة لحديثي الولادة والخدج.</p>
+                <a href="#order-section" class="btn-circle" aria-label="طلب الخدمة"><ion-icon name="arrow-back" aria-hidden="true"></ion-icon></a>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </section>
+
+      <!-- من نحن -->
+      <section class="section about" aria-labelledby="about-label" id="about">
+        <div class="container">
+
+          <div class="about-content">
+            <p class="section-subtitle title-lg has-after" id="about-label" data-reveal="left">لماذا تختارنا؟</p>
+            <h2 class="headline-md" data-reveal="left">كوادر تمريضية مرخصة ومعتمدة بأعلى المعايير</h2>
+            <p class="section-text" data-reveal="left">
+              ندرك أهمية توفير الراحة والأمان لأفراد أسرتك. لذلك نحرص على اختيار ممرضات وممرضين ذوي خبرات مستشفوية حقيقية وتدريب متقدم على التعامل مع مختلف الحالات الحرجة والمزمنة.
+            </p>
+
+            <div class="wrapper">
+              <ul class="about-list">
+                <li class="about-item" data-reveal="left">
+                  <ion-icon name="checkmark-circle-outline"></ion-icon>
+                  <span class="span">ترخيص معتمد واختبارات مهنية دقيقة</span>
+                </li>
+                <li class="about-item" data-reveal="left">
+                  <ion-icon name="checkmark-circle-outline"></ion-icon>
+                  <span class="span">خيارات متعددة للجنسيات واللغات</span>
+                </li>
+                <li class="about-item" data-reveal="left">
+                  <ion-icon name="checkmark-circle-outline"></ion-icon>
+                  <span class="span">متابعة وإشراف طبي مباشر على خطة الرعاية</span>
+                </li>
+                <li class="about-item" data-reveal="left">
+                  <ion-icon name="checkmark-circle-outline"></ion-icon>
+                  <span class="span">مرونة في فترات الدوام (ساعات، شفتات، إقامة)</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <figure class="about-banner" data-reveal="right">
+            <img src="./assets/images/about-banner.png" width="554" height="678" loading="lazy" alt="فريق التمريض" class="w-100">
+          </figure>
+
+        </div>
+      </section>
+
+      <!-- تصنيف الخدمات والجنسيات -->
+      <section class="section listing" aria-labelledby="listing-label" id="nationalities">
+        <div class="container">
+          <ul class="grid-list">
+
+            <li>
+              <p class="section-subtitle title-lg" id="listing-label" data-reveal="left">الجنسيات والتخصصات</p>
+              <h2 class="headline-md" data-reveal="left">اختر حسب الكفاءة والجنسية</h2>
+            </li>
+
+            <li>
+              <div class="listing-card" data-reveal="bottom">
+                <div class="card-icon"><img src="./assets/images/icon-1.png" width="71" height="71" loading="lazy" alt="icon"></div>
+                <div>
+                  <h3 class="headline-sm card-title">تمريض فلبيني</h3>
+                  <p class="card-text">دقة متناهية وإتقان في الرعاية الحرجة</p>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="listing-card" data-reveal="bottom">
+                <div class="card-icon"><img src="./assets/images/icon-2.png" width="71" height="71" loading="lazy" alt="icon"></div>
+                <div>
+                  <h3 class="headline-sm card-title">تمريض هندي</h3>
+                  <p class="card-text">خبرة ممتازة في العناية المركزة والمسنين</p>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="listing-card" data-reveal="bottom">
+                <div class="card-icon"><img src="./assets/images/icon-4.png" width="71" height="71" loading="lazy" alt="icon"></div>
+                <div>
+                  <h3 class="headline-sm card-title">تمريض إندونيسي</h3>
+                  <p class="card-text">صبر وتفانٍ في رعاية كبار السن والأطفال</p>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="listing-card" data-reveal="bottom">
+                <div class="card-icon"><img src="./assets/images/icon-5.png" width="71" height="71" loading="lazy" alt="icon"></div>
+                <div>
+                  <h3 class="headline-sm card-title">تمريض عربي</h3>
+                  <p class="card-text">سهولة التواصل والتفاهم مع المرضى</p>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="listing-card" data-reveal="bottom">
+                <div class="card-icon"><img src="./assets/images/icon-6.png" width="71" height="71" loading="lazy" alt="icon"></div>
+                <div>
+                  <h3 class="headline-sm card-title">ممرضون رجال</h3>
+                  <p class="card-text">لرعاية المرضى والمسنين الذكور باقتدار</p>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="listing-card" data-reveal="bottom">
+                <div class="card-icon"><img src="./assets/images/icon-7.png" width="71" height="71" loading="lazy" alt="icon"></div>
+                <div>
+                  <h3 class="headline-sm card-title">عناية مركزة منزلية</h3>
+                  <p class="card-text">أجهزة تنفس، قسطرة، وتغذية سريرية</p>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- الفوتر -->
+  <footer class="footer" style="background-image: url('./assets/images/footer-bg.png')">
+    <div class="container">
+      <div class="section footer-top">
+
+        <div class="footer-brand" data-reveal="bottom">
+          <a href="#" class="logo" style="color:var(--white); font-weight:800; font-size:2.4rem; margin-bottom:14px; display:inline-block;">
+            عِناية للتمريض المنزلي
+          </a>
+          <p class="text" style="margin-bottom:20px;">
+            نوفر أعلى مستويات الرعاية الصحية المتكاملة بخصوصية وأمان داخل منزلك عبر نخبة من الكفاءات التمريضية المرخصة.
+          </p>
+
+          <ul class="contact-list has-after">
+            <li class="contact-item">
+              <div class="item-icon"><ion-icon name="logo-whatsapp"></ion-icon></div>
+              <div>
+                <p>واتساب الحجوزات المباشرة:</p>
+                <a href="https://wa.me/966531566203" class="contact-link" style="direction:ltr; display:inline-block;">0531566203</a>
+              </div>
+            </li>
+
+            <li class="contact-item">
+              <div class="item-icon"><ion-icon name="time-outline"></ion-icon></div>
+              <div>
+                <p>ساعات الخدمة:</p>
+                <span class="text">متاحون على مدار 24 ساعة طوال الأسبوع</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-list" data-reveal="bottom">
+          <p class="headline-sm footer-list-title">روابط سريعة</p>
+          <p><a href="#top" class="text footer-link">الرئيسية</a></p>
+          <p><a href="#order-section" class="text footer-link">طلب ممرضة الآن</a></p>
+          <p><a href="#services" class="text footer-link">خدماتنا التمريضية</a></p>
+          <p><a href="#about" class="text footer-link">معايير الجودة والأمان</a></p>
+        </div>
+
+        <div class="footer-list" data-reveal="bottom">
+          <p class="headline-sm footer-list-title">أنظمة التعاقد</p>
+          <p class="text">زيارات يومية محددة</p>
+          <p class="text">شفتات 12 ساعة (صباحي / مسائي)</p>
+          <p class="text">إقامة كاملة للمرافقة</p>
+          <p class="text">عقود وباقات شهرية ميسرة</p>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="text copyright">
+          &copy; 2026 عِناية للخدمات التمريضية المنزلية. جميع الحقوق محفوظة.
+        </p>
+
+        <ul class="social-list">
+          <li><a href="https://wa.me/966556300362" class="social-link"><ion-icon name="logo-whatsapp"></ion-icon></a></li>
+          <li><a href="#" class="social-link"><ion-icon name="logo-twitter"></ion-icon></a></li>
+          <li><a href="#" class="social-link"><ion-icon name="logo-instagram"></ion-icon></a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- زر الصعود للأعلى -->
+  <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="chevron-up"></ion-icon>
+  </a>
+
+  <!-- استدعاء ملفات الجافاسكريبت والأيقونات -->
+  <script src="./assets/js/script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
