@@ -1,5 +1,5 @@
 /*-----------------------------------*\
-  #main.css
+  #main.css - منقح ومضبوط بالكامل RTL
 \*-----------------------------------*/
 
 /*-----------------------------------*\
@@ -30,7 +30,7 @@
   --black: hsl(0, 0%, 0%);
 
   /**
-   * typography (الخطوط العربية المعتمدة)
+   * typography
    */
 
   --ff-oswald: 'Cairo', sans-serif;
@@ -50,7 +50,7 @@
    * spacing
    */
 
-  --section-padding: 90px;
+  --section-padding: 80px;
 
   /**
    * box shadow
@@ -109,7 +109,10 @@ a {
   text-decoration: none;
 }
 
-img { height: auto; }
+img {
+  max-width: 100%;
+  height: auto;
+}
 
 input,
 select,
@@ -134,11 +137,14 @@ ion-icon { pointer-events: none; }
 
 address { font-style: normal; }
 
+/* منع أي تسريب جانبي على مستوى الصفحة */
 html {
   font-size: 10px;
   font-family: var(--ff-rubik);
   scroll-behavior: smooth;
   direction: rtl;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -149,16 +155,25 @@ body {
   direction: rtl;
   text-align: right;
   overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
   font-family: var(--ff-rubik);
 }
 
 body.nav-active { overflow: hidden; }
 
 /*-----------------------------------*\
-  #REUSED STYLE
+  #REUSED STYLE & CENTERING
 \*-----------------------------------*/
 
-.container { padding-inline: 16px; }
+/* توسيط الحاوية في جميع الشاشات دون انحياز */
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-inline: 18px;
+}
 
 .headline-lg {
   font-size: var(--headline-lg);
@@ -188,7 +203,11 @@ body.nav-active { overflow: hidden; }
 
 .social-list { display: flex; }
 
-.section { padding-block: var(--section-padding); }
+.section {
+  padding-block: var(--section-padding);
+  position: relative;
+  overflow: hidden;
+}
 
 .has-before,
 .has-after {
@@ -206,16 +225,20 @@ body.nav-active { overflow: hidden; }
   background-color: var(--verdigris);
   color: var(--white);
   font-weight: var(--fw-700);
-  padding: 12px 32px;
+  padding: 12px 30px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   border-radius: var(--radius-6);
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 .btn::before {
+  content: "";
+  position: absolute;
   top: 0;
   right: -100%;
   left: auto;
@@ -233,11 +256,12 @@ body.nav-active { overflow: hidden; }
 
 .grid-list {
   display: grid;
-  gap: 40px 28px;
+  gap: 32px 24px;
 }
 
 .text-center { text-align: center; }
 
+/* تأثيرات الظهور دون التسبب في سكرول جانبي */
 [data-reveal] {
   opacity: 0;
   transition: var(--transition-2);
@@ -245,16 +269,17 @@ body.nav-active { overflow: hidden; }
 
 [data-reveal].revealed { opacity: 1; }
 
-[data-reveal="bottom"] { transform: translateY(40px); }
+[data-reveal="bottom"],
+[data-reveal="left"],
+[data-reveal="right"] {
+  transform: translateY(28px);
+}
 
-[data-reveal="bottom"].revealed { transform: translateY(0); }
-
-[data-reveal="left"] { transform: translateX(40px); }
-
-[data-reveal="right"] { transform: translateX(-40px); }
-
+[data-reveal="bottom"].revealed,
 [data-reveal="left"].revealed,
-[data-reveal="right"].revealed { transform: translateX(0); }
+[data-reveal="right"].revealed {
+  transform: translateY(0);
+}
 
 /*-----------------------------------*\
   #PRELOADER
@@ -303,8 +328,9 @@ body.nav-active { overflow: hidden; }
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
   width: 100%;
-  padding-block: 18px;
+  padding-block: 16px;
   z-index: 20;
 }
 
@@ -328,39 +354,34 @@ body.nav-active { overflow: hidden; }
 
 .nav-open-btn {
   color: var(--white);
-  font-size: 3.8rem;
+  font-size: 3.6rem;
 }
 
-.navbar,
-.overlay {
+/* القائمة الجانبية في الهواتف */
+.navbar {
   position: fixed;
   top: 0;
+  right: 0;
   width: 100%;
+  max-width: 290px;
   height: 100vh;
-}
-
-/* القائمة الجانبية تنبثق من اليمين بنظام RTL الأصيل */
-.navbar {
-  right: -310px;
-  left: auto;
-  max-width: 300px;
   background-color: var(--rich-black-fogra-29);
   z-index: 30;
-  transition: 0.3s var(--cubic-in);
+  transform: translateX(105%);
+  transition: transform 0.35s cubic-bezier(0.05, 0.83, 0.52, 0.97), visibility 0.35s;
   visibility: hidden;
   text-align: right;
 }
 
 .navbar.active {
-  transform: translateX(-310px);
+  transform: translateX(0);
   visibility: visible;
-  transition: 0.4s var(--cubic-out);
 }
 
 .navbar-top {
   position: relative;
-  padding-inline: 25px;
-  padding-block: 50px 70px;
+  padding-inline: 24px;
+  padding-block: 45px 65px;
 }
 
 .nav-close-btn {
@@ -373,7 +394,7 @@ body.nav-active { overflow: hidden; }
 }
 
 .navbar-list {
-  margin-block-end: 30px;
+  margin-block-end: 25px;
   border-block-end: 1px solid var(--white_a10);
 }
 
@@ -381,7 +402,7 @@ body.nav-active { overflow: hidden; }
 
 .navbar-link {
   color: var(--white);
-  padding: 14px 24px;
+  padding: 13px 24px;
 }
 
 .social-list {
@@ -391,34 +412,38 @@ body.nav-active { overflow: hidden; }
   font-size: 1.8rem;
 }
 
+/* طبقة التعتيم للقائمة الجانبية */
 .overlay {
-  right: -100%;
-  left: auto;
+  position: fixed;
+  inset: 0;
   background-color: var(--black);
-  opacity: 0.4;
+  opacity: 0;
   visibility: hidden;
-  transition: var(--transition-2);
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
   z-index: 25;
 }
 
 .overlay.active {
-  transform: translateX(-100%);
+  opacity: 0.5;
   visibility: visible;
+  pointer-events: auto;
 }
 
 /*-----------------------------------*\
-  #HERO & NURSING FORM (حل التداخل جذرياً)
+  #HERO & NURSING FORM
 \*-----------------------------------*/
 
 .hero-banner { display: none; }
 
 .hero {
   background-color: var(--midnight-green);
-  /* إعطاء حشو علوي كافٍ لإنزال المحتوى أسفل الهيدر */
-  padding-block-start: 135px;
-  padding-block-end: 90px;
+  padding-block-start: 130px;
+  padding-block-end: 80px;
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero-subtitle {
@@ -439,18 +464,19 @@ body.nav-active { overflow: hidden; }
 }
 
 .hero-title {
-  margin-block: 10px 24px;
+  margin-block: 10px 22px;
   text-align: right;
 }
 
-/* نموذج طلب التمريض */
+/* نموذج الحجز المتقدم */
 .nursing-order-card {
   background-color: var(--white);
   border-radius: var(--radius-12);
-  padding: 24px;
+  padding: 22px;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
   margin-block-start: 16px;
   text-align: right;
+  width: 100%;
 }
 
 .form-row {
@@ -460,7 +486,7 @@ body.nav-active { overflow: hidden; }
   margin-block-end: 14px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .form-row { grid-template-columns: 1fr; }
 }
 
@@ -537,7 +563,7 @@ body.nav-active { overflow: hidden; }
   padding-block: 50px 30px;
   padding-inline: 25px;
   display: grid;
-  gap: 30px;
+  gap: 26px;
   border-radius: var(--radius-12);
   margin-block-start: -50px;
   background-color: var(--white);
@@ -552,9 +578,9 @@ body.nav-active { overflow: hidden; }
   margin-inline: auto;
 }
 
-.service-card .card-icon { margin-block-end: 20px; }
+.service-card .card-icon { margin-block-end: 18px; }
 
-.service-card .card-text { margin-block: 16px 14px; }
+.service-card .card-text { margin-block: 14px 14px; }
 
 .service-card .btn-circle {
   color: var(--verdigris);
@@ -574,14 +600,18 @@ body.nav-active { overflow: hidden; }
   #ABOUT
 \*-----------------------------------*/
 
-.about { padding-block-end: 0; }
+.about {
+  padding-block-end: 0;
+  position: relative;
+  overflow: hidden;
+}
 
 .about .container {
   display: grid;
-  gap: 20px;
+  gap: 24px;
 }
 
-.about .section-text { margin-block: 20px 35px; }
+.about .section-text { margin-block: 16px 30px; }
 
 .about-item {
   display: flex;
@@ -604,10 +634,10 @@ body.nav-active { overflow: hidden; }
 .listing { background-color: var(--alice-blue); }
 
 .listing-card {
-  padding: 24px 18px;
+  padding: 22px 18px;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 18px;
   border: 2px solid var(--middle-blue-green_40);
   border-radius: var(--radius-12);
   transition: var(--transition-1);
@@ -617,7 +647,7 @@ body.nav-active { overflow: hidden; }
 .listing-card:is(:hover, :focus-visible) { border-color: var(--verdigris); }
 
 .listing-card .card-title {
-  margin-block-end: 5px;
+  margin-block-end: 4px;
   font-family: var(--ff-oswald);
 }
 
@@ -638,17 +668,17 @@ body.nav-active { overflow: hidden; }
 
 .footer-top {
   display: grid;
-  gap: 40px;
-  padding-block-end: 60px;
+  gap: 36px;
+  padding-block-end: 50px;
 }
 
 .footer-brand {
   background-color: var(--ming);
-  padding: 32px;
+  padding: 28px;
   border-radius: var(--radius-6);
 }
 
-.footer .logo { margin-block-end: 20px; }
+.footer .logo { margin-block-end: 18px; }
 
 .contact-item {
   display: flex;
@@ -658,7 +688,7 @@ body.nav-active { overflow: hidden; }
   text-align: right;
 }
 
-.contact-item .item-icon { font-size: 3.5rem; flex-shrink: 0; }
+.contact-item .item-icon { font-size: 3.2rem; flex-shrink: 0; }
 
 .contact-link {
   display: inline-block;
@@ -670,7 +700,7 @@ body.nav-active { overflow: hidden; }
 .footer-list-title {
   color: var(--white);
   font-weight: var(--fw-700);
-  margin-block-end: 20px;
+  margin-block-end: 18px;
 }
 
 .footer .text { opacity: 0.85; }
@@ -684,7 +714,7 @@ body.nav-active { overflow: hidden; }
 .footer-link:is(:hover, :focus-visible) { color: var(--verdigris); }
 
 .footer-bottom {
-  padding-block: 30px;
+  padding-block: 28px;
   border-block-start: 1px solid var(--white_a20);
 }
 
@@ -710,12 +740,12 @@ body.nav-active { overflow: hidden; }
 
 .back-top-btn {
   position: fixed;
-  bottom: 30px;
-  left: 30px;
+  bottom: 28px;
+  left: 28px;
   right: auto;
   background-color: var(--verdigris);
   color: var(--white);
-  padding: 16px;
+  padding: 14px;
   font-size: 2rem;
   border-radius: var(--radius-circle);
   transition: var(--transition-1);
@@ -726,49 +756,47 @@ body.nav-active { overflow: hidden; }
 .back-top-btn:is(:hover, :focus-visible) { background-color: var(--eerie-black); }
 
 .back-top-btn.active {
-  transform: translateY(-10px);
+  transform: translateY(-8px);
   opacity: 1;
 }
 
 /*-----------------------------------*\
-  #MEDIA QUERIES
+  #MEDIA QUERIES (استجابة دقيقة وحفظ التوسيط)
 \*-----------------------------------*/
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
 
 @media (min-width: 768px) {
   :root {
-    --headline-lg: 5.8rem;
-    --headline-md: 4rem;
+    --headline-lg: 5.6rem;
+    --headline-md: 3.8rem;
   }
 
   .container {
-    max-width: 750px;
-    width: 100%;
-    margin-inline: auto;
+    max-width: 720px;
   }
 
   .header .btn { display: inline-flex; }
   .nav-open-btn { margin-inline-start: auto; }
-  .header .container { gap: 30px; }
+  .header .container { gap: 28px; }
 
-  /* مسافة علوية أوسع للشاشات المتوسطة لمنع التداخل تماماً */
   .hero {
-    padding-block-start: 160px;
-    padding-block-end: 100px;
+    padding-block-start: 155px;
+    padding-block-end: 95px;
   }
 
   .service-list { grid-template-columns: 1fr 1fr; }
 
   .about-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .about-banner {
-    max-width: max-content;
-    margin-inline: auto;
-  }
-
-  .listing .grid-list { grid-template-columns: 1fr 1fr; }
+  .listing .grid-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .listing .grid-list > li:first-child { grid-column: 1 / 3; }
 
   .footer-top { grid-template-columns: 1fr 1fr; }
@@ -791,37 +819,63 @@ body.nav-active { overflow: hidden; }
 }
 
 @media (min-width: 992px) {
-  .container { max-width: 940px; }
+  .container {
+    max-width: 960px;
+  }
 
   .hero-banner {
     display: block;
-    max-width: max-content;
+    width: 100%;
+    max-width: 100%;
   }
 
-  /* ترتيب شبكة الهيرو من اليمين (المحتوى) إلى اليسار (الصورة) */
+  .hero-banner img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* منع الأعمدة من التمدد خارج حاوية الشاشة */
   .hero .container {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 40px;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 36px;
     align-items: center;
   }
 
-  .service-list { grid-template-columns: repeat(4, 1fr); }
+  .service-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
   .about .container {
     display: grid;
-    grid-template-columns: 1fr 0.8fr;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: 36px;
     align-items: center;
   }
 
-  .about-content { padding-block-end: 40px; }
-  .about-banner { margin-inline-end: 0; }
+  .about-banner {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .about-banner img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .about-content { padding-block-end: 30px; }
 }
 
 @media (min-width: 1200px) {
-  .container { max-width: 1200px; }
+  .container {
+    max-width: 1180px;
+  }
 
-  .header { padding-block: 22px; }
+  .header { padding-block: 20px; }
   .nav-open-btn,
   .overlay,
   .navbar-top,
@@ -835,35 +889,34 @@ body.nav-active { overflow: hidden; }
   }
 
   .navbar {
-    margin-inline-start: 40px;
+    margin-inline-start: 36px;
     margin-inline-end: auto;
   }
 
   .navbar-list {
     display: flex;
-    gap: 10px;
+    gap: 8px;
   }
 
   .navbar-item { border-block-start: none; }
 
   .navbar-link {
-    --title-md: 1.65rem;
+    --title-md: 1.6rem;
     font-weight: var(--fw-500);
     padding-inline: 14px;
   }
 
-  /* مسافة مريحة جداً أسفل الشريط في شاشات الحواسيب */
   .hero {
-    padding-block-start: 175px;
-    padding-block-end: 110px;
+    padding-block-start: 165px;
+    padding-block-end: 100px;
   }
 
   .hero .container {
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 60px;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 50px;
   }
 
-  .listing .grid-list { grid-template-columns: repeat(4, 1fr); }
+  .listing .grid-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
   .footer-top { grid-template-columns: 1.4fr 1fr 1fr; }
   .footer-brand { grid-column: auto; }
